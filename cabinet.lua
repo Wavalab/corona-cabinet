@@ -1,3 +1,11 @@
+--[[
+
+  Cabinet v1.0 | MIT | github.com/wavalab/corona-cabinet
+  Save/retrieve Tables, Numbers, Strings & Booleans via persistent JSON file.
+  WARNING: Cabinet is built for Corona SDK & requires Corona's JSON library!
+
+--]]
+
 local j = require "json"
 local cabinet = {}
 local fname, defdir = "c_.json", system.DocumentsDirectory
