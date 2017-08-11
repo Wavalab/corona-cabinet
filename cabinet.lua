@@ -36,12 +36,12 @@ cabinet.get = function(k)
   return t[k]
 end
 
-cabinet.del = function(k)
+cabinet.remove = function(k)
   t[k] = nil
   wj(t, fname, defdir)
 end
 
-cabinet.clr = function()
+cabinet.clear = function()
   t = {}
   wj(t, fname, defdir)
 end
