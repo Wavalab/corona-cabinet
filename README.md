@@ -21,11 +21,11 @@ cabinet.get("aKey")
 ```
 Delete saved item:
 ```
-cabinet.del("aKey")
+cabinet.remove("aKey")
 ```
 Delete all saved items:
 ```
-cabinet.clr()
+cabinet.clear()
 ```
 
 
