@@ -1,49 +1,50 @@
 --[[
 
-  Cabinet v1.0 | MIT | github.com/wavalab/corona-cabinet
+  Cabinet v1.1 | MIT | github.com/wavalab/corona-cabinet
   Save/retrieve Tables, Numbers, Strings & Booleans via persistent JSON file.
-  WARNING: Cabinet is built for Corona SDK & requires Corona's JSON library!
 
 --]]
 
 local j = require "json"
-local cabinet = {}
-local fname, defdir = "c_.json", system.DocumentsDirectory
 
-local rj = function(fname, dir)
-  local t_, f = {}, io.open(system.pathForFile(fname, dir), "r")
+local cabinet = {}
+
+local function rj(fname, dir)
+  local t, f = {}, io.open(system.pathForFile(fname, dir), "r")
   if not f then return end
-  t_ = j.decode(f:read("*a"))
+  t = j.decode(f:read("*a"))
   io.close(f)
-  return t_
+  return t
 end
 
-local wj = function(t_, fname, dir)
+local function wj(t, fname, dir)
   local f = io.open(system.pathForFile(fname, dir), "w")
   if not f then return end
-  f:write(j.encode(t_))
+  f:write(j.encode(t))
   io.close(f)
 end
 
-local t = rj(fname, defdir) or {}
+local f = "cabinet.json"
+local d = system.DocumentsDirectory
+local t = rj(f, d) or {}
 
-cabinet.set = function(k, v)
+function cabinet.set(k, v)
   t[k] = v
-  wj(t, fname, defdir)
+  wj(t, f, d)
 end
 
-cabinet.get = function(k)
+function cabinet.get(k)
   return t[k]
 end
 
-cabinet.remove = function(k)
+function cabinet.remove(k)
   t[k] = nil
-  wj(t, fname, defdir)
+  wj(t, f, d)
 end
 
-cabinet.clear = function()
+function cabinet.clear()
   t = {}
-  wj(t, fname, defdir)
+  wj(t, f, d)
 end
 
 return cabinet
