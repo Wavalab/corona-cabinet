@@ -1,5 +1,5 @@
 # Cabinet for Corona
-Save and retrieve:
+Persistent save and retrieve:
 - Tables
 - Numbers
 - Strings
